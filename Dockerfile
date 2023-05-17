@@ -10,8 +10,7 @@ FROM base as build
 WORKDIR /home/node/app
 COPY . .
 COPY --from=dependencies /home/node/app/node_modules ./node_modules
-RUN pnpm run build && \
-pnpm prune --prod
+RUN pnpm run build
 
 FROM base as deploy
 WORKDIR /home/node/app

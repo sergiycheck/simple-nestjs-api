@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { DataDto } from './dtos.dto';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -16,7 +17,13 @@ describe('AppController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+      expect(appController.getHello()).toEqual({ message: 'Hello World!' });
+    });
+
+    it('should return submitted data', () => {
+      const dto = new DataDto();
+      dto.data1 = 'value 1';
+      expect(appController.postSimpleData(dto)).toEqual(dto);
     });
   });
 });
