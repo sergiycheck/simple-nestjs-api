@@ -24,4 +24,4 @@
 fly.toml
 .pnpm-store
 coverage
-
+fly-token
